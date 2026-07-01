@@ -3,16 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\Franco\\FinanceManager\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{14BB76A7-DFCE-4180-9445-6D9AEFFE86EB}|API\\API.csproj|c:\\users\\franco\\financemanager\\api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{14BB76A7-DFCE-4180-9445-6D9AEFFE86EB}|API\\API.csproj|solutionrelative:api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3405B432-72D9-4339-9F70-8AA6083F279F}|Infrastructure\\Infrastructure.csproj|c:\\users\\franco\\financemanager\\infrastructure\\data\\migrations\\20260701023820_initialcreate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3405B432-72D9-4339-9F70-8AA6083F279F}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\data\\migrations\\20260701023820_initialcreate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{14BB76A7-DFCE-4180-9445-6D9AEFFE86EB}|API\\API.csproj|c:\\users\\franco\\financemanager\\api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{14BB76A7-DFCE-4180-9445-6D9AEFFE86EB}|API\\API.csproj|solutionrelative:api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+      "AbsoluteMoniker": "D:0:0:{3405B432-72D9-4339-9F70-8AA6083F279F}|Infrastructure\\Infrastructure.csproj|c:\\users\\franco\\financemanager\\infrastructure\\configurations\\scheduledtransactionconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3405B432-72D9-4339-9F70-8AA6083F279F}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\configurations\\scheduledtransactionconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3405B432-72D9-4339-9F70-8AA6083F279F}|Infrastructure\\Infrastructure.csproj|c:\\users\\franco\\financemanager\\infrastructure\\data\\dependencyinjection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3405B432-72D9-4339-9F70-8AA6083F279F}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\data\\dependencyinjection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{14BB76A7-DFCE-4180-9445-6D9AEFFE86EB}|API\\API.csproj|c:\\users\\franco\\financemanager\\api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{14BB76A7-DFCE-4180-9445-6D9AEFFE86EB}|API\\API.csproj|solutionrelative:api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3405B432-72D9-4339-9F70-8AA6083F279F}|Infrastructure\\Infrastructure.csproj|c:\\users\\franco\\financemanager\\infrastructure\\data\\financedbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -21,6 +25,10 @@
     {
       "AbsoluteMoniker": "D:0:0:{3405B432-72D9-4339-9F70-8AA6083F279F}|Infrastructure\\Infrastructure.csproj|c:\\users\\franco\\financemanager\\infrastructure\\configurations\\transactionhistoryconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3405B432-72D9-4339-9F70-8AA6083F279F}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\configurations\\transactionhistoryconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{14BB76A7-DFCE-4180-9445-6D9AEFFE86EB}|API\\API.csproj|c:\\users\\franco\\financemanager\\api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{14BB76A7-DFCE-4180-9445-6D9AEFFE86EB}|API\\API.csproj|solutionrelative:api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1F224D9B-EAAB-453B-B8D2-C9FEE3BE4236}|Domain\\Domain.csproj|c:\\users\\franco\\financemanager\\domain\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -53,10 +61,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{3405B432-72D9-4339-9F70-8AA6083F279F}|Infrastructure\\Infrastructure.csproj|c:\\users\\franco\\financemanager\\infrastructure\\configurations\\categoryconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3405B432-72D9-4339-9F70-8AA6083F279F}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\configurations\\categoryconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3405B432-72D9-4339-9F70-8AA6083F279F}|Infrastructure\\Infrastructure.csproj|c:\\users\\franco\\financemanager\\infrastructure\\configurations\\scheduledtransactionconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3405B432-72D9-4339-9F70-8AA6083F279F}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\configurations\\scheduledtransactionconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3405B432-72D9-4339-9F70-8AA6083F279F}|Infrastructure\\Infrastructure.csproj|c:\\users\\franco\\financemanager\\infrastructure\\configurations\\rolepermissionconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -121,10 +125,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{20FA0C58-330A-4EC2-A800-43C3C6A11272}|Application\\Application.csproj|c:\\users\\franco\\financemanager\\application\\dependencyinjection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{20FA0C58-330A-4EC2-A800-43C3C6A11272}|Application\\Application.csproj|solutionrelative:application\\dependencyinjection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{20FA0C58-330A-4EC2-A800-43C3C6A11272}|Application\\Application.csproj|c:\\users\\franco\\financemanager\\application\\application.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{20FA0C58-330A-4EC2-A800-43C3C6A11272}|Application\\Application.csproj|solutionrelative:application\\application.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     }
   ],
   "DocumentGroupContainers": [
@@ -134,19 +134,45 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "FinanceDbContext.cs",
-              "DocumentMoniker": "C:\\Users\\Franco\\FinanceManager\\Infrastructure\\Data\\FinanceDbContext.cs",
-              "RelativeDocumentMoniker": "Infrastructure\\Data\\FinanceDbContext.cs",
-              "ToolTip": "C:\\Users\\Franco\\FinanceManager\\Infrastructure\\Data\\FinanceDbContext.cs",
-              "RelativeToolTip": "Infrastructure\\Data\\FinanceDbContext.cs",
-              "ViewState": "AgIAABEAAAAAAAAAAAAIwAIAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "20260701023820_InitialCreate.cs",
+              "DocumentMoniker": "C:\\Users\\Franco\\FinanceManager\\Infrastructure\\Data\\Migrations\\20260701023820_InitialCreate.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Data\\Migrations\\20260701023820_InitialCreate.cs",
+              "ToolTip": "C:\\Users\\Franco\\FinanceManager\\Infrastructure\\Data\\Migrations\\20260701023820_InitialCreate.cs",
+              "RelativeToolTip": "Infrastructure\\Data\\Migrations\\20260701023820_InitialCreate.cs",
+              "ViewState": "AgIAABYAAAAAAAAAAAAgwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-30T03:28:53.31Z"
+              "WhenOpened": "2026-07-01T02:38:42.38Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ScheduledTransactionConfiguration.cs",
+              "DocumentMoniker": "C:\\Users\\Franco\\FinanceManager\\Infrastructure\\Configurations\\ScheduledTransactionConfiguration.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Configurations\\ScheduledTransactionConfiguration.cs",
+              "ToolTip": "C:\\Users\\Franco\\FinanceManager\\Infrastructure\\Configurations\\ScheduledTransactionConfiguration.cs",
+              "RelativeToolTip": "Infrastructure\\Configurations\\ScheduledTransactionConfiguration.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAQwCEAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-30T03:18:09.511Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Franco\\FinanceManager\\API\\Program.cs",
+              "RelativeDocumentMoniker": "API\\Program.cs",
+              "ToolTip": "C:\\Users\\Franco\\FinanceManager\\API\\Program.cs",
+              "RelativeToolTip": "API\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-29T03:59:33.348Z"
             },
             {
               "$type": "Document",
@@ -156,50 +182,37 @@
               "RelativeDocumentMoniker": "Infrastructure\\Data\\DependencyInjection.cs",
               "ToolTip": "C:\\Users\\Franco\\FinanceManager\\Infrastructure\\Data\\DependencyInjection.cs",
               "RelativeToolTip": "Infrastructure\\Data\\DependencyInjection.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAPAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-06-30T00:51:51.02Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\Franco\\FinanceManager\\API\\appsettings.json",
-              "RelativeDocumentMoniker": "API\\appsettings.json",
-              "ToolTip": "C:\\Users\\Franco\\FinanceManager\\API\\appsettings.json",
-              "RelativeToolTip": "API\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAWAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-06-29T03:59:22.54Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\Franco\\FinanceManager\\API\\Program.cs",
-              "RelativeDocumentMoniker": "API\\Program.cs",
-              "ToolTip": "C:\\Users\\Franco\\FinanceManager\\API\\Program.cs",
-              "RelativeToolTip": "API\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAhAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-29T03:59:33.348Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 4,
+              "Title": "FinanceDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\Franco\\FinanceManager\\Infrastructure\\Data\\FinanceDbContext.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Data\\FinanceDbContext.cs",
+              "ToolTip": "C:\\Users\\Franco\\FinanceManager\\Infrastructure\\Data\\FinanceDbContext.cs",
+              "RelativeToolTip": "Infrastructure\\Data\\FinanceDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-30T03:28:53.31Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "TransactionHistoryConfiguration.cs",
               "DocumentMoniker": "C:\\Users\\Franco\\FinanceManager\\Infrastructure\\Configurations\\TransactionHistoryConfiguration.cs",
               "RelativeDocumentMoniker": "Infrastructure\\Configurations\\TransactionHistoryConfiguration.cs",
               "ToolTip": "C:\\Users\\Franco\\FinanceManager\\Infrastructure\\Configurations\\TransactionHistoryConfiguration.cs",
               "RelativeToolTip": "Infrastructure\\Configurations\\TransactionHistoryConfiguration.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAADwvyUAAAAdAAAAAAAAAA==",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAswCUAAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-06-30T03:24:35.119Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 8,
               "Title": "TransactionHistory.cs",
               "DocumentMoniker": "C:\\Users\\Franco\\FinanceManager\\Domain\\Models\\TransactionHistory.cs",
               "RelativeDocumentMoniker": "Domain\\Models\\TransactionHistory.cs",
@@ -211,7 +224,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 6,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\Franco\\FinanceManager\\API\\appsettings.json",
+              "RelativeDocumentMoniker": "API\\appsettings.json",
+              "ToolTip": "C:\\Users\\Franco\\FinanceManager\\API\\appsettings.json",
+              "RelativeToolTip": "API\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-06-29T03:59:22.54Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
               "Title": "BudgetConfiguration.cs",
               "DocumentMoniker": "C:\\Users\\Franco\\FinanceManager\\Infrastructure\\Configurations\\BudgetConfiguration.cs",
               "RelativeDocumentMoniker": "Infrastructure\\Configurations\\BudgetConfiguration.cs",
@@ -223,7 +248,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "User.cs",
               "DocumentMoniker": "C:\\Users\\Franco\\FinanceManager\\Domain\\Models\\User.cs",
               "RelativeDocumentMoniker": "Domain\\Models\\User.cs",
@@ -235,7 +260,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 11,
               "Title": "TransactionConfiguration.cs",
               "DocumentMoniker": "C:\\Users\\Franco\\FinanceManager\\Infrastructure\\Configurations\\TransactionConfiguration.cs",
               "RelativeDocumentMoniker": "Infrastructure\\Configurations\\TransactionConfiguration.cs",
@@ -247,7 +272,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 13,
               "Title": "Transaction.cs",
               "DocumentMoniker": "C:\\Users\\Franco\\FinanceManager\\Domain\\Models\\Transaction.cs",
               "RelativeDocumentMoniker": "Domain\\Models\\Transaction.cs",
@@ -259,7 +284,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 10,
               "Title": "Budget.cs",
               "DocumentMoniker": "C:\\Users\\Franco\\FinanceManager\\Domain\\Models\\Budget.cs",
               "RelativeDocumentMoniker": "Domain\\Models\\Budget.cs",
@@ -271,7 +296,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 14,
               "Title": "CategoryConfiguration.cs",
               "DocumentMoniker": "C:\\Users\\Franco\\FinanceManager\\Infrastructure\\Configurations\\CategoryConfiguration.cs",
               "RelativeDocumentMoniker": "Infrastructure\\Configurations\\CategoryConfiguration.cs",
@@ -283,31 +308,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 12,
               "Title": "Category.cs",
               "DocumentMoniker": "C:\\Users\\Franco\\FinanceManager\\Domain\\Models\\Category.cs",
               "RelativeDocumentMoniker": "Domain\\Models\\Category.cs",
               "ToolTip": "C:\\Users\\Franco\\FinanceManager\\Domain\\Models\\Category.cs",
               "RelativeToolTip": "Domain\\Models\\Category.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAABIAAABOAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAIBJwBIAAABOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-06-30T02:18:31.467Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "ScheduledTransactionConfiguration.cs",
-              "DocumentMoniker": "C:\\Users\\Franco\\FinanceManager\\Infrastructure\\Configurations\\ScheduledTransactionConfiguration.cs",
-              "RelativeDocumentMoniker": "Infrastructure\\Configurations\\ScheduledTransactionConfiguration.cs",
-              "ToolTip": "C:\\Users\\Franco\\FinanceManager\\Infrastructure\\Configurations\\ScheduledTransactionConfiguration.cs",
-              "RelativeToolTip": "Infrastructure\\Configurations\\ScheduledTransactionConfiguration.cs",
-              "ViewState": "AgIAAAIAAAAAAAAAAAAAwC8AAAAuAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-30T03:18:09.511Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 17,
               "Title": "WalletConfiguration.cs",
               "DocumentMoniker": "C:\\Users\\Franco\\FinanceManager\\Infrastructure\\Configurations\\WalletConfiguration.cs",
               "RelativeDocumentMoniker": "Infrastructure\\Configurations\\WalletConfiguration.cs",
@@ -319,7 +332,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 18,
               "Title": "Role.cs",
               "DocumentMoniker": "C:\\Users\\Franco\\FinanceManager\\Domain\\Models\\Role.cs",
               "RelativeDocumentMoniker": "Domain\\Models\\Role.cs",
@@ -331,19 +344,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 16,
               "Title": "RoleConfiguration.cs",
               "DocumentMoniker": "C:\\Users\\Franco\\FinanceManager\\Infrastructure\\Configurations\\RoleConfiguration.cs",
               "RelativeDocumentMoniker": "Infrastructure\\Configurations\\RoleConfiguration.cs",
               "ToolTip": "C:\\Users\\Franco\\FinanceManager\\Infrastructure\\Configurations\\RoleConfiguration.cs",
               "RelativeToolTip": "Infrastructure\\Configurations\\RoleConfiguration.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAABcAAAAxAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAIBJwBcAAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-06-30T01:21:33.836Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 15,
               "Title": "RolePermissionConfiguration.cs",
               "DocumentMoniker": "C:\\Users\\Franco\\FinanceManager\\Infrastructure\\Configurations\\RolePermissionConfiguration.cs",
               "RelativeDocumentMoniker": "Infrastructure\\Configurations\\RolePermissionConfiguration.cs",
@@ -355,7 +368,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 19,
               "Title": "Wallet.cs",
               "DocumentMoniker": "C:\\Users\\Franco\\FinanceManager\\Domain\\Models\\Wallet.cs",
               "RelativeDocumentMoniker": "Domain\\Models\\Wallet.cs",
@@ -367,7 +380,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 20,
               "Title": "PermissionConfiguration.cs",
               "DocumentMoniker": "C:\\Users\\Franco\\FinanceManager\\Infrastructure\\Configurations\\PermissionConfiguration.cs",
               "RelativeDocumentMoniker": "Infrastructure\\Configurations\\PermissionConfiguration.cs",
@@ -379,7 +392,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 21,
               "Title": "Permission.cs",
               "DocumentMoniker": "C:\\Users\\Franco\\FinanceManager\\Domain\\Models\\Permission.cs",
               "RelativeDocumentMoniker": "Domain\\Models\\Permission.cs",
@@ -391,7 +404,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 22,
               "Title": "UserConfiguration.cs",
               "DocumentMoniker": "C:\\Users\\Franco\\FinanceManager\\Infrastructure\\Configurations\\UserConfiguration.cs",
               "RelativeDocumentMoniker": "Infrastructure\\Configurations\\UserConfiguration.cs",
@@ -403,7 +416,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 23,
               "Title": "RolePermissions.cs",
               "DocumentMoniker": "C:\\Users\\Franco\\FinanceManager\\Domain\\Models\\RolePermissions.cs",
               "RelativeDocumentMoniker": "Domain\\Models\\RolePermissions.cs",
@@ -415,19 +428,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 24,
               "Title": "ScheduledTransaction.cs",
               "DocumentMoniker": "C:\\Users\\Franco\\FinanceManager\\Domain\\Models\\ScheduledTransaction.cs",
               "RelativeDocumentMoniker": "Domain\\Models\\ScheduledTransaction.cs",
               "ToolTip": "C:\\Users\\Franco\\FinanceManager\\Domain\\Models\\ScheduledTransaction.cs",
               "RelativeToolTip": "Domain\\Models\\ScheduledTransaction.cs",
-              "ViewState": "AgIAAAcAAAAAAAAAAAArwBQAAAAzAAAAAAAAAA==",
+              "ViewState": "AgIAAAcAAAAAAAAAAIA6wBQAAAAzAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-06-30T02:31:47.079Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 25,
               "Title": "FrequencyType.cs",
               "DocumentMoniker": "C:\\Users\\Franco\\FinanceManager\\Domain\\Enums\\FrequencyType.cs",
               "RelativeDocumentMoniker": "Domain\\Enums\\FrequencyType.cs",
@@ -439,7 +452,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 26,
               "Title": "TransactionType.cs",
               "DocumentMoniker": "C:\\Users\\Franco\\FinanceManager\\Domain\\Enums\\TransactionType.cs",
               "RelativeDocumentMoniker": "Domain\\Enums\\TransactionType.cs",
@@ -451,7 +464,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 28,
               "Title": "CurrencyExtension.cs",
               "DocumentMoniker": "C:\\Users\\Franco\\FinanceManager\\Domain\\Extensions\\CurrencyExtension.cs",
               "RelativeDocumentMoniker": "Domain\\Extensions\\CurrencyExtension.cs",
@@ -463,7 +476,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 27,
               "Title": "CategoryType.cs",
               "DocumentMoniker": "C:\\Users\\Franco\\FinanceManager\\Domain\\Enums\\CategoryType.cs",
               "RelativeDocumentMoniker": "Domain\\Enums\\CategoryType.cs",
@@ -475,7 +488,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 29,
               "Title": "CurrencyType.cs",
               "DocumentMoniker": "C:\\Users\\Franco\\FinanceManager\\Domain\\Enums\\CurrencyType.cs",
               "RelativeDocumentMoniker": "Domain\\Enums\\CurrencyType.cs",
@@ -487,7 +500,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 30,
               "Title": "DependencyInjection.cs",
               "DocumentMoniker": "C:\\Users\\Franco\\FinanceManager\\Application\\DependencyInjection.cs",
               "RelativeDocumentMoniker": "Application\\DependencyInjection.cs",
@@ -496,18 +509,6 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-06-30T00:49:23.994Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 30,
-              "Title": "Application.csproj",
-              "DocumentMoniker": "C:\\Users\\Franco\\FinanceManager\\Application\\Application.csproj",
-              "RelativeDocumentMoniker": "Application\\Application.csproj",
-              "ToolTip": "C:\\Users\\Franco\\FinanceManager\\Application\\Application.csproj",
-              "RelativeToolTip": "Application\\Application.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2026-06-30T00:49:01.478Z"
             }
           ]
         }

@@ -8,9 +8,9 @@ namespace Infrastructure.Configurations
     {
         public void Configure(EntityTypeBuilder<ScheduledTransaction> builder)
         {
-            builder.ToTable("ScheduledTransactions");
+            builder.ToTable("SCHEDULED_TRANSACTIONS");
 
-            builder.HasKey(x => x.ScheduledTransactionId);
+            builder.HasKey(x => x.Id);
 
             builder.Property(x => x.Type)
                 .HasConversion<byte>()
