@@ -1,7 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Application.Common;
+using Application.Interfaces.Repositories;
+using Application.Interfaces.Security;
+using Infrastructure.Repositories;
+using Infrastructure.Security;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-
 namespace Infrastructure.Data
 {
     public static class DependencyInjection
@@ -15,6 +19,13 @@ namespace Infrastructure.Data
                 options.UseSqlServer(
                     configuration.GetConnectionString("FinanceConnection"));
             });
+
+            services.Configure<JwtSettings>(configuration.GetSection("JwtSettings"));
+
+            services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
+            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IPasswordHasher, PasswordHasher>();
             return services;
         }
     }

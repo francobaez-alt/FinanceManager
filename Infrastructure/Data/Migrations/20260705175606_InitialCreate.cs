@@ -29,14 +29,14 @@ namespace Infrastructure.Data.Migrations
                 name: "ROLES",
                 columns: table => new
                 {
-                    RoleId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETDATE()")
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ROLES", x => x.RoleId);
+                    table.PrimaryKey("PK_ROLES", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -59,7 +59,7 @@ namespace Infrastructure.Data.Migrations
                         name: "FK_ROLE_PERMISSIONS_ROLES_PermissionId",
                         column: x => x.PermissionId,
                         principalTable: "ROLES",
-                        principalColumn: "RoleId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -87,7 +87,7 @@ namespace Infrastructure.Data.Migrations
                         name: "FK_USERS_ROLES_RoleId",
                         column: x => x.RoleId,
                         principalTable: "ROLES",
-                        principalColumn: "RoleId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -367,6 +367,11 @@ namespace Infrastructure.Data.Migrations
                 table: "WALLETS",
                 columns: new[] { "UserId", "Name", "CurrencyType" },
                 unique: true);
+
+            SqlScriptLoader.Execute(
+                migrationBuilder, "TR_Transactions_Audit.sql");
+            SqlScriptLoader.Execute(
+                migrationBuilder, "TR_Transactions_UpdateWalletBalance.sql");
         }
 
         /// <inheritdoc />
@@ -401,6 +406,10 @@ namespace Infrastructure.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "ROLES");
+
+            migrationBuilder.Sql("DROP TRIGGER IF EXISTS TR_Transactions_Audit;");
+            migrationBuilder.Sql("DROP TRIGGER IF EXISTS TR_Transactions_UpdateWalletBalance;");
+
         }
     }
 }

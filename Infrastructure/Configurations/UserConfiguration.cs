@@ -24,7 +24,7 @@ namespace Infrastructure.Configurations
             builder.HasIndex(x => x.Email)
                 .IsUnique();
             // PasswordHash
-            builder.Property(x => x.Email)
+            builder.Property(x => x.PasswordHash)
                 .IsRequired();
             // ProfileImage
             builder.Property(x => x.ProfileImagen)

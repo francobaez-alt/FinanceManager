@@ -1,4 +1,5 @@
 using Infrastructure.Data;
+using Application;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +15,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddProblemDetails();
 // Infrastructure DependecyInjection
 builder.Services.AddInfrastructure(builder.Configuration);
+// Application DependecyInjection
+builder.Services.AddApplication();
 
 var app = builder.Build();
 

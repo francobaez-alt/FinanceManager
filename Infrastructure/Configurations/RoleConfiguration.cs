@@ -11,7 +11,7 @@ namespace Infrastructure.Configurations
             builder.ToTable("ROLES");
 
             // PK
-            builder.HasKey(x => x.RoleId);
+            builder.HasKey(x => x.Id);
             // Name
             builder.Property(x => x.Name)
                 .HasMaxLength(50)
