@@ -1,4 +1,5 @@
 ﻿using Application.DTOs.Users;
+using Application.Exceptions;
 using Application.Interfaces.Repositories;
 using Application.Interfaces.Security;
 using Application.Interfaces.Services;
@@ -29,30 +30,29 @@ public class AuthService : IAuthService
         var existingUser = await _userRepository.GetByEmailAsync(dto.Email);
 
         if (existingUser != null)
-            throw new Exception("User already exists");
+            throw new UserAlreadyExistsException(dto.Email);
 
         var user = _mapper.Map<User>(dto);
 
         user.PasswordHash = _passwordHasher.Hash(dto.Password);
 
         // reglas de negocio (NO AutoMapper)
-        user.RoleId = 2; // user default
+        user.RoleId = 1; // user default
         user.IsActive = true;
-        user.IsEmailConfirmed = false;
-        user.CreatedAt = DateTime.UtcNow;
+        //user.IsEmailConfirmed = false;
+        //user.CreatedAt = DateTime.UtcNow;
 
         await _userRepository.Add(user);
         await _userRepository.Save();
 
 
-        // recargar con Role incluido (IMPORTANTE para JWT)
         var createdUser = await _userRepository.GetByEmailAsync(user.Email);
 
          if (createdUser == null)
-             throw new Exception("User not found");
+             throw new NotFoundException("User not found");
 
         if (createdUser.Role == null)
-            throw new Exception($"Role is null. RoleId = {createdUser.RoleId}");
+            throw new NotFoundException($"Role is null. RoleId = {createdUser.RoleId}");
 
         var token = _jwtTokenGenerator.GenerateToken(createdUser!, createdUser!.Role.Name);
 
@@ -67,15 +67,15 @@ public class AuthService : IAuthService
         var user = await _userRepository.GetByEmailAsync(dto.Email);
 
         if (user == null)
-            throw new Exception("Invalid credentials");
+            throw new NotFoundException("Invalid credentials");
 
         var isValidPassword = _passwordHasher.Verify(dto.Password, user.PasswordHash);
 
         if (!isValidPassword)
-            throw new Exception("Invalid credentials");
+            throw new NotFoundException("Invalid credentials");
 
         if (!user.IsActive)
-            throw new Exception("User is inactive");
+            throw new BusinessException("User is banned");
 
         var token = _jwtTokenGenerator.GenerateToken(user, user.Role.Name);
 
