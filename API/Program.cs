@@ -1,6 +1,8 @@
-using Infrastructure.Data;
-using Application;
 using API.Middleware;
+using Application;
+using Infrastructure.Data;
+using Infrastructure.Persistence.Extensions;
+using Infrastructure.Persistence.Seed;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,14 +18,14 @@ builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 
 // Swagger
 builder.Services.AddSwaggerGen();
-// For MiddelWear
-builder.Services.AddProblemDetails();
 // Infrastructure DependecyInjection
 builder.Services.AddInfrastructure(builder.Configuration);
 // Application DependecyInjection
 builder.Services.AddApplication();
 
 var app = builder.Build();
+
+await app.Services.InitializeDatabaseAsync();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

@@ -4,19 +4,16 @@ using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace Infrastructure.Data.Migrations
+namespace Infrastructure.Migrations
 {
     [DbContext(typeof(FinanceDbContext))]
-    [Migration("20260705175606_InitialCreate")]
-    partial class InitialCreate
+    partial class FinanceDbContextModelSnapshot : ModelSnapshot
     {
-        /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -473,7 +470,7 @@ namespace Infrastructure.Data.Migrations
 
                     b.HasOne("Domain.Models.Role", "Role")
                         .WithMany("RolePermissions")
-                        .HasForeignKey("PermissionId")
+                        .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

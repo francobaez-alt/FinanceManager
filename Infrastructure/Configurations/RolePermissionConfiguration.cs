@@ -23,7 +23,7 @@ namespace Infrastructure.Configurations
             // Roles
             builder.HasOne(x => x.Role)
                 .WithMany(x => x.RolePermissions)
-                .HasForeignKey(x => x.PermissionId);
+                .HasForeignKey(x => x.RoleId);
             // Permissions
             builder.HasOne(x => x.Permission)
                 .WithMany(x => x.RolePermissions)

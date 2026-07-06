@@ -1,9 +1,10 @@
-﻿using System;
+﻿using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore.Migrations;
+using System;
 
 #nullable disable
 
-namespace Infrastructure.Data.Migrations
+namespace Infrastructure.Migrations
 {
     /// <inheritdoc />
     public partial class InitialCreate : Migration
@@ -56,8 +57,8 @@ namespace Infrastructure.Data.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ROLE_PERMISSIONS_ROLES_PermissionId",
-                        column: x => x.PermissionId,
+                        name: "FK_ROLE_PERMISSIONS_ROLES_RoleId",
+                        column: x => x.RoleId,
                         principalTable: "ROLES",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -367,7 +368,6 @@ namespace Infrastructure.Data.Migrations
                 table: "WALLETS",
                 columns: new[] { "UserId", "Name", "CurrencyType" },
                 unique: true);
-
             SqlScriptLoader.Execute(
                 migrationBuilder, "TR_Transactions_Audit.sql");
             SqlScriptLoader.Execute(
@@ -406,10 +406,10 @@ namespace Infrastructure.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "ROLES");
-
-            migrationBuilder.Sql("DROP TRIGGER IF EXISTS TR_Transactions_Audit;");
-            migrationBuilder.Sql("DROP TRIGGER IF EXISTS TR_Transactions_UpdateWalletBalance;");
-
+            migrationBuilder.Sql(@"
+                DROP TRIGGER IF EXISTS TR_Transactions_Audit;");
+            migrationBuilder.Sql(@"
+                DROP TRIGGER IF EXISTS TR_Transactions_UpdateWalletBalance;");
         }
     }
 }

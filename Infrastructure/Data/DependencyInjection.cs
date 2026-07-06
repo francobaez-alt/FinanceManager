@@ -1,6 +1,7 @@
 ﻿using Application.Common;
 using Application.Interfaces.Repositories;
 using Application.Interfaces.Security;
+using Infrastructure.Persistence.Seed;
 using Infrastructure.Repositories;
 using Infrastructure.Security;
 using Microsoft.EntityFrameworkCore;
@@ -26,6 +27,7 @@ namespace Infrastructure.Data
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IPasswordHasher, PasswordHasher>();
+            services.AddScoped<DatabaseSeeder>();
             return services;
         }
     }
