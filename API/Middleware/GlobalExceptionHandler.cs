@@ -1,47 +1,121 @@
-﻿using Microsoft.AspNetCore.Diagnostics;
+﻿using Application.Exceptions;
+using FluentValidation;
+using Microsoft.AspNetCore.Diagnostics;
+using Microsoft.AspNetCore.Mvc;
 
-namespace API.Middleware
+namespace API.Middleware;
+
+public class GlobalExceptionHandler : IExceptionHandler
 {
-    public class GlobalExceptionHandler : IExceptionHandler
+    private readonly ILogger<GlobalExceptionHandler> _logger;
+
+    public GlobalExceptionHandler(ILogger<GlobalExceptionHandler> logger)
     {
-        private readonly ILogger<GlobalExceptionHandler> _logger;
+        _logger = logger;
+    }
 
-        public GlobalExceptionHandler(ILogger<GlobalExceptionHandler> logger)
+    public async ValueTask<bool> TryHandleAsync(
+        HttpContext httpContext,
+        Exception exception,
+        CancellationToken cancellationToken)
+    {
+        _logger.LogError(exception, "An unhandled exception occurred.");
+
+        var problemDetails = exception switch
         {
-            _logger = logger;
-        }
-        public async ValueTask<bool> TryHandleAsync(
-            HttpContext httpContext, 
-            Exception exception, 
-            CancellationToken cancellationToken)
+            ValidationException ex => CreateValidationProblemDetails(ex, httpContext),
+
+            UserAlreadyExistsException => CreateProblemDetails(
+                StatusCodes.Status409Conflict,
+                "User already exists",
+                exception.Message,
+                httpContext),
+
+            NotFoundException => CreateProblemDetails(
+                StatusCodes.Status404NotFound,
+                "Resource not found",
+                exception.Message,
+                httpContext),
+
+            BusinessException => CreateProblemDetails(
+                StatusCodes.Status400BadRequest,
+                "Business rule violation",
+                exception.Message,
+                httpContext),
+
+            UnauthorizedException => CreateProblemDetails(
+                StatusCodes.Status401Unauthorized,
+                "Unauthorized access",
+                exception.Message,
+                httpContext),
+
+            ArgumentException => CreateProblemDetails(
+                StatusCodes.Status400BadRequest,
+                "Invalid argument",
+                exception.Message,
+                httpContext),
+
+            UnauthorizedAccessException => CreateProblemDetails(
+                StatusCodes.Status401Unauthorized,
+                "Unauthorized access",
+                exception.Message,
+                httpContext),
+
+            _ => CreateProblemDetails(
+                StatusCodes.Status500InternalServerError,
+                "An unexpected error occurred",
+                exception.Message,
+                httpContext)
+        };
+
+        httpContext.Response.StatusCode = problemDetails.Status!.Value;
+        httpContext.Response.ContentType = "application/problem+json";
+
+        await httpContext.Response.WriteAsJsonAsync(problemDetails, cancellationToken);
+
+        return true;
+    }
+
+    private static ProblemDetails CreateProblemDetails(
+        int statusCode,
+        string title,
+        string detail,
+        HttpContext context)
+    {
+        var problem = new ProblemDetails
         {
-            _logger.LogError(exception, "An unhandled exception occurred.");
+            Status = statusCode,
+            Title = title,
+            Detail = detail,
+            Instance = context.Request.Path
+        };
 
-            var (statusCode, title) = exception switch
-            {
-                Application.Exceptions.UserAlreadyExistsException => (StatusCodes.Status409Conflict, "User already exists"),
-                Application.Exceptions.NotFoundException => (StatusCodes.Status404NotFound, "Resource not found"),
-                Application.Exceptions.BusinessException => (StatusCodes.Status400BadRequest, "Business rule violation"),
-                ArgumentException => (StatusCodes.Status400BadRequest, "Invalid argument"),
-                UnauthorizedAccessException => (StatusCodes.Status401Unauthorized, "Unauthorized access"),
-                _ => (StatusCodes.Status500InternalServerError, "An unexpected error occurred")
-            };
+        problem.Extensions["traceId"] = context.TraceIdentifier;
 
-            var problemDetails = new Microsoft.AspNetCore.Mvc.ProblemDetails
-            {
-                Status = statusCode,
-                Title = title,
-                Detail = exception.Message,
-                Instance = httpContext.Request.Path
-            };
+        return problem;
+    }
 
-            problemDetails.Extensions["traceId"] = httpContext.TraceIdentifier;
+    private static ProblemDetails CreateValidationProblemDetails(
+    ValidationException exception,
+    HttpContext context)
+    {
+        var errors = exception.Errors
+            .GroupBy(e => e.PropertyName)
+            .ToDictionary(
+                g => g.Key,
+                g => g.Select(e => e.ErrorMessage));
 
-            httpContext.Response.StatusCode = statusCode;
-            httpContext.Response.ContentType = "application/problem+json";
+        var problem = new ProblemDetails
+        {
+            Status = StatusCodes.Status400BadRequest,
+            Title = "Validation failed",
+            Detail = "One or more validation errors occurred.",
+            Instance = context.Request.Path
+        };
 
-            await httpContext.Response.WriteAsJsonAsync(problemDetails, cancellationToken);
-            return true;
-        }
+        problem.Extensions["traceId"] = context.TraceIdentifier;
+        problem.Extensions["errors"] = errors;
+
+        return problem;
     }
 }

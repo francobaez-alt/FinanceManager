@@ -17,6 +17,21 @@ namespace Infrastructure.Repositories
                 .Include(x => x.Role)
                 .FirstOrDefaultAsync(x => x.Email == email);
         }
-            
+
+        public async Task<User?> GetByIdWithRoleAsync(int id)
+        {
+            return await _dbSet
+                .Include(x => x.Role)
+                .FirstOrDefaultAsync(x => x.Id == id);
+        }
+        public async Task<User?> GetByEmailWithPermissionsAsync(string email)
+        {
+            return await _dbSet
+                .Include(u => u.Role)
+                    .ThenInclude(r => r.RolePermissions)
+                        .ThenInclude(rp => rp.Permission)
+                .FirstOrDefaultAsync(u => u.Email == email);
+        }
+
     }
 }

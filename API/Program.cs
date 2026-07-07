@@ -1,3 +1,4 @@
+using API.DependencyInjection;
 using API.Middleware;
 using Application;
 using Infrastructure.Data;
@@ -22,6 +23,9 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddInfrastructure(builder.Configuration);
 // Application DependecyInjection
 builder.Services.AddApplication();
+// Add Authentication and Authorization
+builder.Services.AddJwtAuthentication(
+    builder.Configuration);
 
 var app = builder.Build();
 
@@ -32,10 +36,10 @@ if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
 }
-
+app.UseAuthentication();
+app.UseAuthorization();
 app.UseHttpsRedirection();
 app.UseExceptionHandler();
-app.UseAuthorization();
 app.MapControllers();
 
 // Swagger

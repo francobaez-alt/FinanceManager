@@ -19,7 +19,7 @@ namespace Infrastructure.Repositories
         }
         public async Task<IEnumerable<TEntity>> GetAllAsync()
             => await _dbSet.ToListAsync();
-        public async Task<TEntity> GetByIdAsync(long id)
+        public async Task<TEntity> GetByIdAsync(int id)
             => await _dbSet.FindAsync(id);
         public async Task Add(TEntity entity)
             => await _dbSet.AddAsync(entity);
