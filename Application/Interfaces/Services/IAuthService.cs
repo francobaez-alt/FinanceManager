@@ -1,4 +1,5 @@
-﻿using Application.DTOs.Users;
+﻿using Application.Common;
+using Application.DTOs.Users;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -7,7 +8,8 @@ namespace Application.Interfaces.Services
 {
     public interface IAuthService
     {
-        Task<AuthResponseDto> LoginAsync(LoginUserDto loginUserDto);
-        Task<AuthResponseDto> RegisterAsync(RegisterUserDto registerUserDto);
+        Task<ApiResponse<AuthResponseDto>> RegisterAsync(RegisterUserDto dto);
+
+        Task<ApiResponse<AuthResponseDto>> LoginAsync(LoginUserDto dto);
     }
 }

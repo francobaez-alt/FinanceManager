@@ -1,5 +1,4 @@
-﻿using Application.Exceptions;
-using Application.Interfaces.Security;
+﻿using Application.Interfaces.Security;
 using Domain.Models;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
@@ -152,7 +151,7 @@ namespace Infrastructure.Persistence.Seed
                 .SingleOrDefaultAsync(r => r.Name == "Admin");
 
             if (adminRole == null)
-                throw new NotFoundException("Admin role not found. SeedRoles must run first.");
+                throw new Exception("Admin role not found. SeedRoles must run first.");
 
             var admin = new User
             {

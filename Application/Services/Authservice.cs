@@ -1,11 +1,11 @@
-﻿using Application.DTOs.Users;
-using Application.Exceptions;
+﻿using Application.Common;
+using Application.DTOs.Users;
 using Application.Interfaces.Repositories;
 using Application.Interfaces.Security;
 using Application.Interfaces.Services;
 using AutoMapper;
 using Domain.Models;
-using FluentValidation;
+using System.Net;
 
 public class AuthService : IAuthService
 {
@@ -13,59 +13,77 @@ public class AuthService : IAuthService
     private readonly IJwtTokenGenerator _jwtTokenGenerator;
     private readonly IPasswordHasher _passwordHasher;
     private readonly IMapper _mapper;
-    private readonly IValidator<RegisterUserDto> _registerValidator;
-    private readonly IValidator<LoginUserDto> _loginValidator;
 
     public AuthService(
         IUserRepository userRepository,
         IJwtTokenGenerator jwtTokenGenerator,
         IPasswordHasher passwordHasher,
-        IMapper mapper,
-        IValidator<LoginUserDto> loginValidator,
-        IValidator<RegisterUserDto> registerValidator)
+        IMapper mapper)
     {
         _userRepository = userRepository;
         _jwtTokenGenerator = jwtTokenGenerator;
         _passwordHasher = passwordHasher;
         _mapper = mapper;
-        _loginValidator = loginValidator;
-        _registerValidator = registerValidator;
     }
 
-    public async Task<AuthResponseDto> RegisterAsync(RegisterUserDto dto)
+    public async Task<ApiResponse<AuthResponseDto>> RegisterAsync(RegisterUserDto dto)
     {
-        await ValidateRegisterUserDtoAsync(dto);
-
-        await EnsureUserDoesNotExistAsync(dto.Email);
+        if (await _userRepository.GetByEmailAsync(dto.Email) != null)
+        {
+            return ApiResponse<AuthResponseDto>.Fail("User already exists.");
+        }
 
         var user = CreateUser(dto);
 
         await SaveUserAsync(user);
 
-        return await CreateAuthResponseAsync(user.Email);
+        var response = await CreateAuthResponseAsync(user.Email);
+
+        if (response == null)
+        {
+            return ApiResponse<AuthResponseDto>.Fail(
+                "Unable to create authentication response.",
+                HttpStatusCode.InternalServerError);
+        }
+
+        return ApiResponse<AuthResponseDto>.Ok(
+            response,
+            "User registered successfully.",
+            HttpStatusCode.Created);
     }
 
-    public async Task<AuthResponseDto> LoginAsync(LoginUserDto dto)
+    public async Task<ApiResponse<AuthResponseDto>> LoginAsync(LoginUserDto dto)
     {
-        await ValidateLoginUserDtoAsync(dto);
-        var user = await AuthenticateUserAsync(dto);
-        return await CreateAuthResponseAsync(user.Email);
-    }
+        var user = await _userRepository.GetByEmailAsync(dto.Email);
 
-    private async Task ValidateRegisterUserDtoAsync(RegisterUserDto dto)
-    {
-        await _registerValidator.ValidateAndThrowAsync(dto);
-    }
+        if (user == null)
+        {
+            return ApiResponse<AuthResponseDto>.Fail("Invalid credentials.", HttpStatusCode.Unauthorized);
+        }
 
-    private async Task ValidateLoginUserDtoAsync(LoginUserDto dto)
-    {
-        await _loginValidator.ValidateAndThrowAsync(dto);
-    }
+        if (!_passwordHasher.Verify(dto.Password, user.PasswordHash))
+        {
+            return ApiResponse<AuthResponseDto>.Fail("Invalid credentials.", HttpStatusCode.Unauthorized);
+        }
 
-    private async Task EnsureUserDoesNotExistAsync(string email)
-    {
-        if (await _userRepository.GetByEmailAsync(email) != null)
-            throw new UserAlreadyExistsException(email);
+        if (!user.IsActive)
+        {
+            return ApiResponse<AuthResponseDto>.Fail("User is banned.", HttpStatusCode.Forbidden);
+        }
+
+        var response = await CreateAuthResponseAsync(user.Email);
+
+        if (response == null)
+        {
+            return ApiResponse<AuthResponseDto>.Fail(
+                "Unable to create authentication response.",
+                HttpStatusCode.InternalServerError);
+        }
+
+        return ApiResponse<AuthResponseDto>.Ok(
+            response,
+            "Login successful.",
+            HttpStatusCode.OK);
     }
 
     private User CreateUser(RegisterUserDto dto)
@@ -73,39 +91,29 @@ public class AuthService : IAuthService
         var user = _mapper.Map<User>(dto);
 
         user.PasswordHash = _passwordHasher.Hash(dto.Password);
-        user.RoleId = 1;
+        user.RoleId = 2;
         user.IsActive = true;
 
         return user;
     }
 
-    private async Task<AuthResponseDto> CreateAuthResponseAsync(string email)
+    private async Task<AuthResponseDto?> CreateAuthResponseAsync(string email)
     {
-        var user = await _userRepository.GetByEmailWithPermissionsAsync(email)
-            ?? throw new NotFoundException("User not found");
+        var user = await _userRepository.GetByEmailWithPermissionsAsync(email);
 
-        if (user.Role == null)
-            throw new NotFoundException($"Role is null. RoleId = {user.RoleId}");
+        if (user == null)
+            return null;
+
+        if (user.Role?.RolePermissions?.Any() != true)
+        {
+            throw new InvalidOperationException(
+                $"User {user.Id} has an invalid role configuration.");
+        }
 
         var response = _mapper.Map<AuthResponseDto>(user);
         response.Token = _jwtTokenGenerator.GenerateToken(user);
 
         return response;
-    }
-    private async Task<User> AuthenticateUserAsync(LoginUserDto dto)
-    {
-        var user = await _userRepository.GetByEmailAsync(dto.Email);
-
-        if (user == null)
-            throw new UnauthorizedException("Invalid credentials");
-
-        if (!_passwordHasher.Verify(dto.Password, user.PasswordHash))
-            throw new UnauthorizedException("Invalid credentials");
-
-        if (!user.IsActive)
-            throw new BusinessException("User is banned");
-
-        return user;
     }
 
     private async Task SaveUserAsync(User user)
@@ -113,5 +121,4 @@ public class AuthService : IAuthService
         await _userRepository.Add(user);
         await _userRepository.Save();
     }
-
 }

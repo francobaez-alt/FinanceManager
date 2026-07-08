@@ -1,10 +1,10 @@
-﻿using Application.Common;
-using Application.Interfaces.Repositories;
+﻿using Application.Interfaces.Repositories;
 using Application.Interfaces.Services;
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
+using SharpGrip.FluentValidation.AutoValidation.Mvc.Extensions;
 
-namespace Application
+namespace Application.Common
 {
     public static class DependencyInjection
     {
@@ -16,7 +16,7 @@ namespace Application
             services.AddValidatorsFromAssembly(typeof(DependencyInjection).Assembly);
 
             services.AddScoped<IAuthService, AuthService>();
-
+            services.AddFluentValidationAutoValidation();
             return services;
         }
     }

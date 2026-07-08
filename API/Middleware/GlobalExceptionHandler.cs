@@ -1,6 +1,4 @@
-﻿using Application.Exceptions;
-using FluentValidation;
-using Microsoft.AspNetCore.Diagnostics;
+﻿using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Middleware;
@@ -23,32 +21,6 @@ public class GlobalExceptionHandler : IExceptionHandler
 
         var problemDetails = exception switch
         {
-            ValidationException ex => CreateValidationProblemDetails(ex, httpContext),
-
-            UserAlreadyExistsException => CreateProblemDetails(
-                StatusCodes.Status409Conflict,
-                "User already exists",
-                exception.Message,
-                httpContext),
-
-            NotFoundException => CreateProblemDetails(
-                StatusCodes.Status404NotFound,
-                "Resource not found",
-                exception.Message,
-                httpContext),
-
-            BusinessException => CreateProblemDetails(
-                StatusCodes.Status400BadRequest,
-                "Business rule violation",
-                exception.Message,
-                httpContext),
-
-            UnauthorizedException => CreateProblemDetails(
-                StatusCodes.Status401Unauthorized,
-                "Unauthorized access",
-                exception.Message,
-                httpContext),
-
             ArgumentException => CreateProblemDetails(
                 StatusCodes.Status400BadRequest,
                 "Invalid argument",
@@ -57,14 +29,14 @@ public class GlobalExceptionHandler : IExceptionHandler
 
             UnauthorizedAccessException => CreateProblemDetails(
                 StatusCodes.Status401Unauthorized,
-                "Unauthorized access",
+                "Unauthorized",
                 exception.Message,
                 httpContext),
 
             _ => CreateProblemDetails(
                 StatusCodes.Status500InternalServerError,
-                "An unexpected error occurred",
-                exception.Message,
+                "Internal Server Error",
+                "An unexpected error occurred.",
                 httpContext)
         };
 
@@ -91,30 +63,6 @@ public class GlobalExceptionHandler : IExceptionHandler
         };
 
         problem.Extensions["traceId"] = context.TraceIdentifier;
-
-        return problem;
-    }
-
-    private static ProblemDetails CreateValidationProblemDetails(
-    ValidationException exception,
-    HttpContext context)
-    {
-        var errors = exception.Errors
-            .GroupBy(e => e.PropertyName)
-            .ToDictionary(
-                g => g.Key,
-                g => g.Select(e => e.ErrorMessage));
-
-        var problem = new ProblemDetails
-        {
-            Status = StatusCodes.Status400BadRequest,
-            Title = "Validation failed",
-            Detail = "One or more validation errors occurred.",
-            Instance = context.Request.Path
-        };
-
-        problem.Extensions["traceId"] = context.TraceIdentifier;
-        problem.Extensions["errors"] = errors;
 
         return problem;
     }

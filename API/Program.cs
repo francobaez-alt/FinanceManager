@@ -1,9 +1,8 @@
 using API.DependencyInjection;
 using API.Middleware;
-using Application;
+using Application.Common;
 using Infrastructure.Data;
 using Infrastructure.Persistence.Extensions;
-using Infrastructure.Persistence.Seed;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,6 +25,8 @@ builder.Services.AddApplication();
 // Add Authentication and Authorization
 builder.Services.AddJwtAuthentication(
     builder.Configuration);
+// Add Validation
+builder.Services.AddValidation();
 
 var app = builder.Build();
 

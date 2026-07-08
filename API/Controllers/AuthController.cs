@@ -19,17 +19,17 @@ namespace API.Controllers
         }
 
         [HttpPost("register")]
-        public async Task<ActionResult<AuthResponseDto>> Register(RegisterUserDto dto)
+        public async Task<IActionResult> Register(RegisterUserDto dto)
         {
             var result = await _authService.RegisterAsync(dto);
-            return Ok(result);
+            return StatusCode((int)result.StatusCode, result);
         }
 
         [HttpPost("login")]
-        public async Task<ActionResult<AuthResponseDto>> Login(LoginUserDto dto)
+        public async Task<IActionResult> Login(LoginUserDto dto)
         {
             var result = await _authService.LoginAsync(dto);
-            return Ok(result);
+            return StatusCode((int)result.StatusCode, result);
         }
 
         [Authorize]
