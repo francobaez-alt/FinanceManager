@@ -1,13 +1,14 @@
 ﻿using Application.Common;
 using Application.Interfaces.Repositories;
 using Application.Interfaces.Security;
+using Infrastructure.Data;
 using Infrastructure.Persistence.Seed;
 using Infrastructure.Repositories;
 using Infrastructure.Security;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-namespace Infrastructure.Data
+namespace Infrastructure.Extensions
 {
     public static class DependencyInjection
     {

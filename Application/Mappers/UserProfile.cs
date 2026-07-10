@@ -11,7 +11,7 @@ namespace Application.Mappers
     {
         public UserProfile()
         {
-            // User → AuthResponseDto (sin token)
+            // User → AuthResponseDto 
             CreateMap<User, AuthResponseDto>()
                 .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.Id))
                 .ForMember(dest => dest.Role, opt => opt.MapFrom(src => src.Role.Name))
@@ -34,6 +34,8 @@ namespace Application.Mappers
             // User -> UserDetailDto
             CreateMap<User, UserDetailsDto>()
                 .ForMember(dest => dest.Role, opt => opt.MapFrom(src => src.Role.Name));
+
+            //
                 
 
 

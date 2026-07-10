@@ -4,7 +4,7 @@ using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 using SharpGrip.FluentValidation.AutoValidation.Mvc.Extensions;
 
-namespace Application.Common
+namespace Application.Extensions
 {
     public static class DependencyInjection
     {

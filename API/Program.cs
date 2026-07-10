@@ -1,7 +1,7 @@
 using API.DependencyInjection;
 using API.Middleware;
-using Application.Common;
-using Infrastructure.Data;
+using Application.Extensions;
+using Infrastructure.Extensions;
 using Infrastructure.Persistence.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
