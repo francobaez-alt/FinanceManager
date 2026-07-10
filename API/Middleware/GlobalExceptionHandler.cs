@@ -17,7 +17,7 @@ public class GlobalExceptionHandler : IExceptionHandler
         Exception exception,
         CancellationToken cancellationToken)
     {
-        _logger.LogError(exception, "An unhandled exception occurred.");
+        _logger.LogError(exception, exception.Message);
 
         var problemDetails = exception switch
         {
@@ -36,7 +36,7 @@ public class GlobalExceptionHandler : IExceptionHandler
             _ => CreateProblemDetails(
                 StatusCodes.Status500InternalServerError,
                 "Internal Server Error",
-                "An unexpected error occurred.",
+                exception.Message,
                 httpContext)
         };
 

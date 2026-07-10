@@ -35,8 +35,10 @@ namespace Application.Mappers
             CreateMap<User, UserDetailsDto>()
                 .ForMember(dest => dest.Role, opt => opt.MapFrom(src => src.Role.Name));
 
-            //
-                
+            // User -> UserDto
+            CreateMap<User, UserDto>()
+                .ForMember(dest => dest.Role, opt => opt.MapFrom(src => src.Role.Name));
+
 
 
         }

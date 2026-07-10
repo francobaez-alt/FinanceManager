@@ -1,4 +1,5 @@
 using API.DependencyInjection;
+using API.Extensions;
 using API.Middleware;
 using Application.Extensions;
 using Infrastructure.Extensions;
@@ -27,6 +28,8 @@ builder.Services.AddJwtAuthentication(
     builder.Configuration);
 // Add Validation
 builder.Services.AddValidation();
+// Add Authorization
+builder.Services.AddCustomAuthorization();
 
 var app = builder.Build();
 
