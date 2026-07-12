@@ -1,4 +1,5 @@
-﻿using Application.DTOs.Users;
+﻿using Application.Common;
+using Application.DTOs.Users;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -7,6 +8,17 @@ namespace Application.Interfaces.Services
 {
     public interface IUserService
     {
-        Task<UserDto> GetByIdAsync(int id);
+        Task<ApiResponse<UserDto>> GetByIdAsync(int id);
+        Task<ApiResponse<IEnumerable<UserDetailsDto>>> ListUsersAsync();
+        Task<ApiResponse<UserDetailsDto>> GetUserDetailsByIdAsync(int id);
+        Task<ApiResponse<UpdateUserDto>> UpdateUserAsync(UpdateUserDto updateUserDto);
+        Task<ApiResponse<AdminUpdateUserDto>> AdminUpdateUserAsync(AdminUpdateUserDto adminUpdateUserDto);
+        Task<ApiResponse<bool>> DesactiveUserAsync(int id);
+        Task<ApiResponse<bool>> ActivateUserAsync(int id);
+        Task<ApiResponse<UserDto>> GetByEmailAsync(string email);
+        Task<ApiResponse<UserDto>> UpdatePasswordAsync(UpdatePasswordDto updatePasswordDto);
+        
+        
+
     }
 }

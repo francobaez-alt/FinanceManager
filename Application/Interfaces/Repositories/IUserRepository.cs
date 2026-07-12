@@ -12,5 +12,8 @@ namespace Application.Interfaces.Repositories
         Task<User?> GetByEmailWithPermissionsAsync(string email);
         Task<bool> ExistAsync(int id); 
         Task<bool> ExistEmailAsync(string email);
+        Task<bool> ActiveAsync(int id);
+        Task<bool> DesactiveAsync(int id);
+
     }
 }

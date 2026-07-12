@@ -23,8 +23,8 @@ namespace API.Controllers
             _userService = userService; 
         }
 
-        [HttpGet]
-        //[HasPermission("Users.Read")]
+       
+        [HttpGet("me")]
         public async Task<IActionResult> GetMyUser()
         {
             var claim = User.FindFirst(ClaimTypes.NameIdentifier);
@@ -38,6 +38,13 @@ namespace API.Controllers
             }
 
             return Ok(user);    
+        }
+        [HttpGet("list")]
+        [HasPermission("Users.Read")]
+        public async Task<IActionResult> ListUsers()
+        {
+            var users = await _userService.ListUsersAsync();
+            return Ok(users);
         }
 
 

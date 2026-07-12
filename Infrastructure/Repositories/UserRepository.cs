@@ -43,6 +43,22 @@ namespace Infrastructure.Repositories
             return await _context.Users.AnyAsync(u => u.Email == email);
         }
 
-        
+        public async Task<bool> ActiveAsync(int id)
+        {
+            return await _context.Users
+                .Where(u => u.Id == id)
+                .ExecuteUpdateAsync(setters =>
+                    setters.SetProperty(u => u.IsActive, true))
+                > 0;
+        }
+
+        public async Task<bool> DesactiveAsync(int id)
+        {
+            return await _context.Users
+                .Where(u => u.Id == id)
+                .ExecuteUpdateAsync(setters =>
+                    setters.SetProperty(u => u.IsActive, false))
+                > 0;
+        }
     }
 }

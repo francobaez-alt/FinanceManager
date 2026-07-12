@@ -157,7 +157,8 @@ namespace Infrastructure.Persistence.Seed
             {
                 Name = "Admin",
                 Email = "admin@system.com",
-                PasswordHash = _passwordHasher.Hash("123"),
+                // Password: Admin123
+                PasswordHash = _passwordHasher.Hash("Admin123"),
                 RoleId = adminRole.Id,
                 IsEmailConfirmed = false,
                 IsActive = true
