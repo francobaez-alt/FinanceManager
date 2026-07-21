@@ -1,15 +1,20 @@
 ﻿using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace API.Middleware;
 
 public class GlobalExceptionHandler : IExceptionHandler
 {
     private readonly ILogger<GlobalExceptionHandler> _logger;
+    private readonly IWebHostEnvironment _environment;
 
-    public GlobalExceptionHandler(ILogger<GlobalExceptionHandler> logger)
+    public GlobalExceptionHandler(
+        ILogger<GlobalExceptionHandler> logger,
+        IWebHostEnvironment environment)
     {
         _logger = logger;
+        _environment = environment;
     }
 
     public async ValueTask<bool> TryHandleAsync(
@@ -17,52 +22,94 @@ public class GlobalExceptionHandler : IExceptionHandler
         Exception exception,
         CancellationToken cancellationToken)
     {
-        _logger.LogError(exception, exception.Message);
+        LogException(httpContext, exception);
+        var problemDetails = CreateProblemDetails(
+            httpContext,
+            exception);
 
-        var problemDetails = exception switch
-        {
-            ArgumentException => CreateProblemDetails(
-                StatusCodes.Status400BadRequest,
-                "Invalid argument",
-                exception.Message,
-                httpContext),
+        httpContext.Response.StatusCode =
+            problemDetails.Status!.Value;
 
-            UnauthorizedAccessException => CreateProblemDetails(
-                StatusCodes.Status401Unauthorized,
-                "Unauthorized",
-                exception.Message,
-                httpContext),
+        httpContext.Response.ContentType =
+            "application/problem+json";
 
-            _ => CreateProblemDetails(
-                StatusCodes.Status500InternalServerError,
-                "Internal Server Error",
-                exception.Message,
-                httpContext)
-        };
-
-        httpContext.Response.StatusCode = problemDetails.Status!.Value;
-        httpContext.Response.ContentType = "application/problem+json";
-
-        await httpContext.Response.WriteAsJsonAsync(problemDetails, cancellationToken);
+        await httpContext.Response
+            .WriteAsJsonAsync(
+                problemDetails,
+                cancellationToken);
 
         return true;
     }
 
-    private static ProblemDetails CreateProblemDetails(
-        int statusCode,
-        string title,
-        string detail,
-        HttpContext context)
+    private void LogException(
+        HttpContext context,
+        Exception exception)
     {
-        var problem = new ProblemDetails
+        var userId =
+            context.User
+            .FindFirst(ClaimTypes.NameIdentifier)
+            ?.Value;
+
+        var requestData = new
         {
-            Status = statusCode,
-            Title = title,
-            Detail = detail,
-            Instance = context.Request.Path
+            TraceId = context.TraceIdentifier,
+
+            UserId = userId,
+
+            Method = context.Request.Method,
+
+            Path = context.Request.Path,
+
+            Query = context.Request.QueryString.Value,
+
+            Endpoint = context
+                .GetEndpoint()
+                ?.DisplayName,
+
+            Ip = context.Connection
+                .RemoteIpAddress
+                ?.ToString()
         };
 
-        problem.Extensions["traceId"] = context.TraceIdentifier;
+        _logger.LogError(
+            exception,
+            """
+            Unhandled exception occurred.
+
+            Request:
+            {@RequestData}
+            """,
+            requestData);
+    }
+
+    private ProblemDetails CreateProblemDetails(
+        HttpContext context,
+        Exception exception)
+    {
+        var detail =
+            _environment.IsDevelopment()
+                ? exception.Message
+                : "An unexpected error occurred.";
+
+        var problem = new ProblemDetails
+        {
+            Status =
+            StatusCodes.Status500InternalServerError,
+
+            Title =
+            "Internal Server Error",
+
+            Detail = detail,
+
+            Instance =
+            context.Request.Path
+        };
+
+        problem.Extensions["traceId"] =
+            context.TraceIdentifier;
+
+        problem.Extensions["timestamp"] =
+            DateTime.UtcNow;
 
         return problem;
     }

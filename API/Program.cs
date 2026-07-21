@@ -4,6 +4,7 @@ using API.Middleware;
 using Application.Extensions;
 using Infrastructure.Extensions;
 using Infrastructure.Persistence.Extensions;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -30,6 +31,14 @@ builder.Services.AddJwtAuthentication(
 builder.Services.AddValidation();
 // Add Authorization
 builder.Services.AddCustomAuthorization();
+// Add Serilog
+builder.Host.UseSerilog((context, services, configuration) =>
+{
+    configuration
+    .ReadFrom.Configuration(context.Configuration)
+    .ReadFrom.Services(services)
+    .Enrich.FromLogContext();
+});
 
 var app = builder.Build();
 

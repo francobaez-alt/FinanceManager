@@ -14,6 +14,8 @@ namespace Application.Interfaces.Repositories
         Task<bool> ExistEmailAsync(string email);
         Task<bool> ActiveAsync(int id);
         Task<bool> DesactiveAsync(int id);
+        Task<bool> UpdatePasswordAsync(int id, string newPassword);
+        Task<string> GetPasswordByIdAsync(int id);
 
     }
 }

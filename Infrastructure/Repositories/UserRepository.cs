@@ -60,5 +60,22 @@ namespace Infrastructure.Repositories
                     setters.SetProperty(u => u.IsActive, false))
                 > 0;
         }
+
+        public async Task<bool> UpdatePasswordAsync(int id, string newPassword)
+        {
+            return await _context.Users
+                .Where(u => u.Id == id)
+                .ExecuteUpdateAsync(setters =>
+                    setters.SetProperty(u => u.PasswordHash, newPassword))
+                > 0;
+        }
+
+        public async Task<string> GetPasswordByIdAsync(int id)
+        {
+            return await _context.Users
+                .Where(u => u.Id == id)
+                .Select(u => u.PasswordHash)
+                .FirstOrDefaultAsync();
+        }
     }
 }
