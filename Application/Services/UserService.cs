@@ -67,9 +67,9 @@ namespace Application.Services
             _logger.LogInformation("User activated successfully. Id: {Id}", id);
             return ApiResponse<bool>.Ok(true, "User activated successfully", HttpStatusCode.NoContent);
         }
-        public async Task<ApiResponse<bool>> DesactiveUserAsync(int id)
+        public async Task<ApiResponse<bool>> DeactivateUserAsync(int id)
         {
-            var result = await _userRepository.DesactiveAsync(id);
+            var result = await _userRepository.DeactivateAsync(id);
 
             if (!result)
             {

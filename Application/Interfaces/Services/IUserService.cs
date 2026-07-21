@@ -13,7 +13,7 @@ namespace Application.Interfaces.Services
         Task<ApiResponse<UserDetailsDto>> GetUserDetailsByIdAsync(int id);
         Task<ApiResponse<bool>> UpdateUserAsync(int id, UpdateUserDto updateUserDto);
         Task<ApiResponse<AdminUpdateUserDto>> AdminUpdateUserAsync(AdminUpdateUserDto adminUpdateUserDto);
-        Task<ApiResponse<bool>> DesactiveUserAsync(int id);
+        Task<ApiResponse<bool>> DeactivateUserAsync(int id);
         Task<ApiResponse<bool>> ActivateUserAsync(int id);
         Task<ApiResponse<UserDto>> GetByEmailAsync(string email);
         Task<ApiResponse<bool>> UpdatePasswordAsync(int id, UpdatePasswordDto updatePasswordDto);

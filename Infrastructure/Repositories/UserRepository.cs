@@ -52,7 +52,7 @@ namespace Infrastructure.Repositories
                 > 0;
         }
 
-        public async Task<bool> DesactiveAsync(int id)
+        public async Task<bool> DeactivateAsync(int id)
         {
             return await _context.Users
                 .Where(u => u.Id == id)

@@ -40,6 +40,22 @@ namespace API.Controllers
 
             return Ok(user);    
         }
+
+        [HttpPut("me")]
+        public async Task<IActionResult> UpdateMyUser([FromBody] UpdateUserDto updateUserDto)
+        {
+            var claim = User.FindFirst(ClaimTypes.NameIdentifier);
+            if (claim == null)
+                return Unauthorized();
+
+            var result = await _userService.UpdateUserAsync(int.Parse(claim.Value), updateUserDto);
+            if (!result.Success)
+            {
+                return BadRequest(result);
+            }
+
+            return Ok(result);
+        }
         [HttpPut("me/password")]
         public async Task<IActionResult> UpdateMyPassword([FromBody] UpdatePasswordDto updatePasswordDto)
         {
@@ -54,56 +70,6 @@ namespace API.Controllers
             }
 
             return Ok(Result);
-        }
-
-        [HttpGet("list")]
-        [HasPermission("Users.Read")]
-        public async Task<IActionResult> ListUsers()
-        {
-            var users = await _userService.ListUsersAsync();
-            return Ok(users);
-        }
-
-        [HttpPut("activate/{id}")]
-        [HasPermission("Users.Update")]
-        public async Task<IActionResult> ActivateUser(int id)
-        {
-            var result = await _userService.ActivateUserAsync(id);
-            if (!result.Success)
-            {
-                return NotFound(result);
-            }
-
-            return Ok(result);
-        }
-
-        [HttpPut("desactivate/{id}")]
-        [HasPermission("Users.Update")]
-        public async Task<IActionResult> DesactivateUser(int id)
-        {
-            var result = await _userService.DesactiveUserAsync(id);
-            if (!result.Success)
-            {
-                return NotFound(result);
-            }
-
-            return Ok(result);
-        }
-
-        [HttpPut("me/update")]
-        public async Task<IActionResult> UpdateMyUser([FromBody] UpdateUserDto updateUserDto)
-        {
-            var claim = User.FindFirst(ClaimTypes.NameIdentifier);
-            if (claim == null)
-                return Unauthorized();
-
-            var result = await _userService.UpdateUserAsync(int.Parse(claim.Value), updateUserDto);
-            if (!result.Success)
-            {
-                return BadRequest(result);
-            }
-
-            return Ok(result);
         }
 
     }
